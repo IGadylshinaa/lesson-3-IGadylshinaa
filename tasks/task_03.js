@@ -4,7 +4,11 @@
 * */
 
 function getVowelsCount(str) {
-
+    str = str.toLowerCase();
+    
+    const vowelsN = /[aeiouy]/g;
+    const vowels = str.match(vowelsN);
+    return vowels ? vowels.length : 0;
 }
 
 

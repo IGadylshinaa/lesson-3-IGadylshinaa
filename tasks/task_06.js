@@ -6,7 +6,7 @@
 Note: оценки всегда будут уникальными (поэтому никаких повторяющихся значений) */
 
 function myLanguages(results) {
-
+  return Object.entries(results).filter(([language, result]) => result >= 60).sort((a, b) => b[1] - a[1]).map(([language, result]) => language);
 }
 
 

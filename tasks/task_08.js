@@ -36,7 +36,25 @@ A component will not appear at all if its value happens to be zero. Hence, 1 min
 *
 * * */
 function formatDuration (seconds) {
+    const units = [
+        { name: "year", duration: 365 * 24 * 60 * 60 },
+        { name: "day", duration: 24 * 60 * 60 },
+        { name: "hour", duration: 60 * 60 },
+        { name: "minute", duration: 60 },
+        { name: "second", duration: 1 }
+    ];
 
+    const result = [];
+
+    for (const unit of units) {
+        const value = Math.floor(seconds / unit.duration);
+        if (value !== 0) {
+            result.push(value === 1 ? `${value} ${unit.name}` : `${value} ${unit.name}s`);
+            seconds -= value * unit.duration;
+        }
+    }
+
+    return result.join(", ").replace(/,([^,]*)$/, ' and$1');
 }
 
 
